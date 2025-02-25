@@ -1,0 +1,5 @@
+# Telegram Bot Token and Info
+BOT_TOKEN="1234567890:AABB33DD55FFGGHH11JJKKLLMMNN00PPQQX"
+BOT_INFO="PAST JSON FROM /getMe in one line"
+# Base URL for the API (default is production)
+API_BASE_URL="http://localhost:3000"

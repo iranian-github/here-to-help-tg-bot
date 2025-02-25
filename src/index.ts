@@ -1,18 +1,25 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.jsonc`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import { Bot, webhookCallback } from 'grammy';
+import { Env } from './interfaces/types';
+import { handleStart, handleHelp, handleWebsite, handleCategory, handleUnknownMessage } from './handlers/commands';
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
+	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+		const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
+
+		// Register command handlers
+		bot.command('start', handleStart);
+		bot.command('help', handleHelp);
+		bot.command('website', handleWebsite);
+
+		// Register category commands
+		const categoryCommands = ['suicide', 'violence', 'illness', 'addiction', 'general'];
+		for (const command of categoryCommands) {
+			bot.command(command, (ctx) => handleCategory(ctx, command, env));
+		}
+
+		// Handle unknown commands
+		bot.on('message', handleUnknownMessage);
+
+		return webhookCallback(bot, 'cloudflare-mod')(request);
 	},
-} satisfies ExportedHandler<Env>;
+};

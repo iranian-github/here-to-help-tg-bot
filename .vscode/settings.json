@@ -1,5 +1,31 @@
 {
+	"editor.tabSize": 2,
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"files.trimTrailingWhitespace": true,
+	"editor.wordWrapColumn": 90,
+	"editor.rulers": [
+		90
+	],
 	"files.associations": {
 		"wrangler.json": "jsonc"
-	}
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"editor.formatOnSave": true
+	},
+	"[typescript]": {
+		"editor.formatOnSave": true,
+		"editor.formatOnPaste": false
+	},
+	"[markdown]": {
+		"editor.formatOnSave": true,
+		"editor.formatOnPaste": false
+	},
+	// --- TS Editor Configs ---
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"typescript.preferences.importModuleSpecifier": "shortest",
+	"typescript.preferences.quoteStyle": "single",
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
 }
