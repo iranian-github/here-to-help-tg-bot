@@ -1,5 +1,7 @@
 # Here To Help Telegram Bot Worker
 
+![HereToHelpTelegramBot](https://raw.githubusercontent.com/iranian-github/here-to-help-tg-bot/master/images/heretohelp_bot.png)
+
 A Cloudflare Worker-based Telegram bot that provides information about free support services and resources for people in need. A subproject of the [Here to Help](https://github.com/iranian-github/here-to-help).
 
 ## Features
